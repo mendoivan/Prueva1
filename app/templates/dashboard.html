@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel - SOS</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <h1 class="brand">Panel de Operación</h1>
+      <nav class="nav">
+        <a href="{{ url_for('main.tickets') }}">Tickets</a>
+        <a href="{{ url_for('main.tecnicos') }}">Técnicos</a>
+        <a href="{{ url_for('main.inventario') }}">Inventario</a>
+        <a href="{{ url_for('main.reportes') }}">Reportes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- SECCIÓN HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Gestión rápida y eficiente</h2>
+        <p>Simplifica tus procesos operativos del día a día.</p>
+        <button class="btn-primary" onclick="openModal('modalTickets')">
+          Crear Ticket
+        </button>
+      </div>
+
+      <div class="hero-img">
+        <!-- Ajusta la extensión si no es .png -->
+        <img src="{{ url_for('static', filename='images/dashboard.png') }}" alt="Dashboard SOS">
+      </div>
+    </section>
+
+    <!-- ACCESOS RÁPIDOS -->
+    <section class="features">
+      <h3>Accesos Rápidos</h3>
+
+      <div class="grid">
+        <div class="card">
+          <h4>Tickets</h4>
+          <p>Consulta, crea y administra tickets de soporte.</p>
+          <a class="btn-outline" onclick="openModal('modalTickets')">Ir</a>
+        </div>
+
+        <div class="card">
+          <h4>Técnicos</h4>
+          <p>Gestiona la información y asignación de técnicos.</p>
+          <a class="btn-outline" onclick="openModal('modalTecnicos')">Ir</a>
+        </div>
+
+        <div class="card">
+          <h4>Inventario</h4>
+          <p>Controla equipos, herramientas y recursos disponibles.</p>
+          <a class="btn-outline" onclick="openModal('modalInventario')">Ir</a>
+        </div>
+
+        <div class="card">
+          <h4>Reportes</h4>
+          <p>Genera reportes detallados de la operación.</p>
+          <a class="btn-outline" onclick="openModal('modalReportes')">Ir</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================= -->
+  <!-- MODAL: TICKETS -->
+  <!-- ========================= -->
+  <div id="modalTickets" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('modalTickets')">&times;</span>
+
+      <h2>Gestión de Tickets</h2>
+
+      <label>Título</label>
+      <input type="text" class="input-field" placeholder="Título del ticket">
+
+      <label>Descripción</label>
+      <textarea class="input-field" rows="3" placeholder="Descripción del problema..."></textarea>
+
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('modalTickets')">Cerrar</button>
+        <button class="btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- MODAL: TÉCNICOS -->
+  <!-- ========================= -->
+  <div id="modalTecnicos" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('modalTecnicos')">&times;</span>
+
+      <h2>Gestión de Técnicos</h2>
+
+      <label>Nombre</label>
+      <input type="text" class="input-field" placeholder="Nombre del técnico">
+
+      <label>Especialidad</label>
+      <input type="text" class="input-field" placeholder="Ej. Redes, CCTV, Servidores...">
+
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('modalTecnicos')">Cerrar</button>
+        <button class="btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- MODAL: INVENTARIO -->
+  <!-- ========================= -->
+  <div id="modalInventario" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('modalInventario')">&times;</span>
+
+      <h2>Gestión de Inventario</h2>
+
+      <label>Artículo</label>
+      <input type="text" class="input-field" placeholder="Nombre del artículo">
+
+      <label>Cantidad</label>
+      <input type="number" class="input-field" placeholder="Cantidad disponible">
+
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('modalInventario')">Cerrar</button>
+        <button class="btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- MODAL: REPORTES -->
+  <!-- ========================= -->
+  <div id="modalReportes" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('modalReportes')">&times;</span>
+
+      <h2>Generar Reporte</h2>
+
+      <label>Tipo de reporte</label>
+      <select class="input-field">
+        <option value="">Seleccionar...</option>
+        <option>Reporte de Tickets</option>
+        <option>Reporte de Técnicos</option>
+        <option>Reporte de Inventario</option>
+      </select>
+
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('modalReportes')">Cerrar</button>
+        <button class="btn-primary">Generar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- SCRIPTS -->
+  <!-- ========================= -->
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = "flex";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
